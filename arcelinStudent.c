@@ -12,9 +12,10 @@
 
 //Variables
 typedef struct {
+    int hasData; // = 1 if there is data
+    int ID;
     char firstName[SIZE];
     char lastName[SIZE];
-    int ID;
     int numOfGradeEntries;
     double totalGradePoints;
     double avgGrade;
@@ -66,33 +67,49 @@ int main(){
     student list[SIZE];
     FiveStudents(list); //Hard coding the first 5 students into the array
     Greeting();
+        int doWhile = 0;
+    do {
         char userMenuSelection = toupper(DisplayMenu());
-    switch (userMenuSelection){
-        case 'P':
-            printf("PRINT");
-            break;
-        case 'O':
-            printf("PRINT");
-            break;
-        case 'S':
-            printf("PRINT");
-            break;
-        case 'A':
-            printf("PRINT");
-            break;
-        case 'C':
-            printf("PRINT");
-            break;
-        case 'N':
-            printf("PRINT");
-            break;
-        case 'Q':
-            printf("PRINT");
-            break;
-        
-        default:
-            break;
-    }
+        switch (userMenuSelection){
+            case 'P': //print students onto screen
+                for(int i = 0; list[i].hasData == 1; i++){
+                    printf("--------------------\npIndex: %d\n ID: %d\n First Name: %s\n Last Name: %s\n Num of Graded Entries: %d\n Total Graded Points: %.2lf\n Avg Grade: %.2lf\n", i, list[i].ID, list[i].firstName, list[i].lastName, list[i].numOfGradeEntries, list[i].totalGradePoints, list[i].avgGrade);
+                };
+                
+                doWhile = 5;
+                break;
+            case 'O': //print student information onto screen
+                printf("PRINT");
+                doWhile = 5;
+                break;
+            case 'S': //select student for caluclations. "current student"
+                printf("PRINT");
+                doWhile = 5;
+                break;
+            case 'A': //add point for selected student
+                printf("PRINT");
+                doWhile = 5;
+                break;
+            case 'C': //calculate and display the avg of selected student
+                printf("PRINT");
+                doWhile = 5;
+                break;
+            case 'N': //add student to list
+                printf("PRINT");
+                doWhile = 5;
+                break;
+            case 'Q': //quit program
+                printf("Quitting Program");
+                doWhile = 5;
+                break;
+            
+            default:
+                printf("\nPlease select a valid input");
+                printf("%d", doWhile);
+                doWhile ++;
+                break;
+        };
+    } while (doWhile != 5);
 
     return 0;
 }
@@ -102,37 +119,42 @@ void Greeting(void){
 };
 
 void FiveStudents(student list[]) { //Hard coding 5 students into the array
+    list[0].hasData = 1;
+    list[0].ID = 1001;
     strcpy(list[0].firstName, "Charles");
     strcpy(list[0].lastName, "Xavier");
-    list[0].ID = 1001;
     list[0].numOfGradeEntries = 5;
     list[0].totalGradePoints = 240.5;
     list[0].avgGrade = 48.1;
 
+    list[1].hasData = 1;
+    list[1].ID = 1002;
     strcpy(list[1].firstName, "Jean");
     strcpy(list[1].lastName, "Grey");
-    list[1].ID = 1002;
     list[1].numOfGradeEntries = 4;
     list[1].totalGradePoints = 200.0;
     list[1].avgGrade = 50.0;
 
+    list[2].hasData = 1;
+    list[2].ID = 1003;
     strcpy(list[2].firstName, "Scott");
     strcpy(list[2].lastName, "Summers");
-    list[2].ID = 1003;
     list[2].numOfGradeEntries = 6;
     list[2].totalGradePoints = 300.0;
     list[2].avgGrade = 50.0;
 
+    list[3].hasData = 1;
+    list[3].ID = 1004;
     strcpy(list[3].firstName, "Ororo");
     strcpy(list[3].lastName, "Munroe");
-    list[3].ID = 1004;
     list[3].numOfGradeEntries = 3;
     list[3].totalGradePoints = 150.5;
     list[3].avgGrade = 50.2;
 
+    list[4].hasData = 1;
+    list[4].ID = 1005;
     strcpy(list[4].firstName, "Logan");
     strcpy(list[4].lastName, "Howlett");
-    list[4].ID = 1005;
     list[4].numOfGradeEntries = 5;
     list[4].totalGradePoints = 220.0;
     list[4].avgGrade = 44.0;
