@@ -104,7 +104,7 @@ int main(){
                 printf("PRINT");
                 break;
             case 'N': //add student to list
-                printf("PRINT");
+                AddOneStudent(list, 0);
                 break;
             case 'Q': //quit program
                 printf("Quitting Program");
@@ -165,15 +165,12 @@ void FiveStudents(student list[]) { //Hard coding 5 students into the array
     list[4].avgGrade = 44.0;
 };
 
-int AddOneStudent(student list[], int studentCount){
-    return 0;
-};
-
 void PrintStudentList(student list[], int studentCount){ //Prints students
     for(int i = 0; list[i].hasData == 1; i++){
         printf("--------------------\nIndex: %d\n ID: %d\n First Name: %s\n Last Name: %s\n Num of Graded Entries: %d\n Total Graded Points: %.2lf\n Avg Grade: %.2lf\n", i, list[i].ID, list[i].firstName, list[i].lastName, list[i].numOfGradeEntries, list[i].totalGradePoints, list[i].avgGrade);
     }
 };
+
 int SelectAndReturnIndex(student list[], int studentCount){
     int selectedStudentsIndex;
      printf("\nSelect students' index for other options: ");
@@ -185,6 +182,29 @@ int SelectAndReturnIndex(student list[], int studentCount){
     return selectedStudentsIndex;
 };
 
+int AddOneStudent(student list[], int studentCount){
+    int newStudentIndex;
+    for(newStudentIndex = 0; list[newStudentIndex].hasData == 1; newStudentIndex++);
+    printf(" %d", newStudentIndex);
+
+    printf("\nADDING NEW STUDENT\n");
+    list[newStudentIndex].hasData = 1;
+    printf("Input new students ID: ");
+    scanf(" %d", &list[newStudentIndex].ID);
+    printf("Input new students first name: ");
+    scanf(" %s", list[newStudentIndex].firstName);
+    printf("Input new students last name: ");
+    scanf(" %s", list[newStudentIndex].lastName);
+    printf("Input new students # of grade entries: ");
+    scanf(" %d", &list[newStudentIndex].numOfGradeEntries);
+    printf("Input new students total grade points: ");
+    scanf(" %d", &list[newStudentIndex].ID);
+
+    printf(" %s dfasdfasdfasdf ====", list[newStudentIndex].firstName);
+
+    return newStudentIndex;
+};
+
 char DisplayMenu(){
     char userInput;
     printf("\nPlease select from the following:\n --- P --- to print the list of students and information onto the screen\n --- S --- to select the current student in the list for grade calculation\n --- O --- to print the information about one student onto the screen\n --- A --- to add the points for the current student\n --- C --- to calculate and display the average of the current student\n --- N --- to add a new student to the list\n --- Q --- to quit\n Input: ");
@@ -193,4 +213,5 @@ char DisplayMenu(){
 };
 
 void AddPoints(student list[], int index){};
+
 void CalculateAverage(student list[], int index){};

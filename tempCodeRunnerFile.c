@@ -1,1 +1,11 @@
-ase select a student by using option 'S' in the men
+   // printf("\nADDING NEW STUDENT\n");
+    // printf("Input new students ID: ");
+    // scanf(" %d", list[0].ID);
+    // printf("Input new students first name: ");
+    // scanf(" %d", list[0].firstName);
+    // printf("Input new students last name: ");
+    // scanf(" %d", list[0].lastName);
+    // printf("Input new students # of grade entries: ");
+    // scanf(" %d", list[0].numOfGradeEntries);
+    // printf("Input new students total grade points: ");
+    // scanf(" %d", list[0].ID);
