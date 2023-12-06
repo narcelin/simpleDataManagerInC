@@ -1,1 +1,1 @@
-studentCount
+ase select a student by using option 'S' in the men

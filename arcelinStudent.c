@@ -65,51 +65,56 @@ void CalculateAverage(student list[], int index);
 
 int main(){
     student list[SIZE];
+    int selectedStudentsIndex = -1;
+    int addedPoints = 0;
+    char userMenuSelection;
     FiveStudents(list); //Hard coding the first 5 students into the array
     Greeting();
-        int doWhile = 0;
     do {
-        char userMenuSelection = toupper(DisplayMenu());
+        userMenuSelection = toupper(DisplayMenu());
         switch (userMenuSelection){
             case 'P': //print students onto screen
-                for(int i = 0; list[i].hasData == 1; i++){
-                    printf("--------------------\npIndex: %d\n ID: %d\n First Name: %s\n Last Name: %s\n Num of Graded Entries: %d\n Total Graded Points: %.2lf\n Avg Grade: %.2lf\n", i, list[i].ID, list[i].firstName, list[i].lastName, list[i].numOfGradeEntries, list[i].totalGradePoints, list[i].avgGrade);
-                };
-                
-                doWhile = 5;
+                PrintStudentList(list, 0);
                 break;
-            case 'O': //print student information onto screen
-                printf("PRINT");
-                doWhile = 5;
+            case 'S': //select student. "current student"
+                selectedStudentsIndex = SelectAndReturnIndex(list, 0);
                 break;
-            case 'S': //select student for caluclations. "current student"
-                printf("PRINT");
-                doWhile = 5;
+            case 'O': //print selected students information onto screen
+                if(selectedStudentsIndex == -1){
+                    printf("\nPlease select a student by using option 'S' in the menu");
+                } else {
+                    printf("--------------------\nIndex: %d\n ID: %d\n First Name: %s\n Last Name: %s\n Num of Graded Entries: %d\n Total Graded Points: %.2lf\n Avg Grade: %.2lf\n", selectedStudentsIndex, list[selectedStudentsIndex].ID, list[selectedStudentsIndex].firstName, list[selectedStudentsIndex].lastName, list[selectedStudentsIndex].numOfGradeEntries, list[selectedStudentsIndex].totalGradePoints, list[selectedStudentsIndex].avgGrade);
+                }
                 break;
             case 'A': //add point for selected student
-                printf("PRINT");
-                doWhile = 5;
+                if(selectedStudentsIndex == -1){
+                    printf("\nPlease select a student by using option 'S' in the menu");
+                    break;
+                } else {
+                    printf("Add points for %s (Max 100): ", list[selectedStudentsIndex].firstName);
+                    scanf(" %d", &addedPoints);
+                    if(addedPoints > 100 || addedPoints < 0){
+                        printf("\nPlease add a valid value between 0 and 100");
+                    }
+                    list[selectedStudentsIndex].totalGradePoints += addedPoints;
+                    printf("%lf", list[selectedStudentsIndex].totalGradePoints);
+                }
                 break;
             case 'C': //calculate and display the avg of selected student
                 printf("PRINT");
-                doWhile = 5;
                 break;
             case 'N': //add student to list
                 printf("PRINT");
-                doWhile = 5;
                 break;
             case 'Q': //quit program
                 printf("Quitting Program");
-                doWhile = 5;
                 break;
             
             default:
-                printf("\nPlease select a valid input");
-                printf("%d", doWhile);
-                doWhile ++;
+                printf("\n\n !!! Select a valid input !!!\n\n");
                 break;
         };
-    } while (doWhile != 5);
+    } while (userMenuSelection != 'Q');
 
     return 0;
 }
@@ -164,15 +169,26 @@ int AddOneStudent(student list[], int studentCount){
     return 0;
 };
 
-void PrintStudentList(student list[], int studentCount){};
+void PrintStudentList(student list[], int studentCount){ //Prints students
+    for(int i = 0; list[i].hasData == 1; i++){
+        printf("--------------------\nIndex: %d\n ID: %d\n First Name: %s\n Last Name: %s\n Num of Graded Entries: %d\n Total Graded Points: %.2lf\n Avg Grade: %.2lf\n", i, list[i].ID, list[i].firstName, list[i].lastName, list[i].numOfGradeEntries, list[i].totalGradePoints, list[i].avgGrade);
+    }
+};
 int SelectAndReturnIndex(student list[], int studentCount){
-    return 0;
+    int selectedStudentsIndex;
+     printf("\nSelect students' index for other options: ");
+        scanf(" %d", &selectedStudentsIndex);
+        if(list[selectedStudentsIndex].hasData != 1){
+            selectedStudentsIndex = -1;
+            printf("\nPlease select a valid student value. Input 'P' to see your options");
+        }
+    return selectedStudentsIndex;
 };
 
 char DisplayMenu(){
     char userInput;
-    printf("Please select from the following:\n --- P --- to print the list of students and information onto the screen\n --- O --- to print the information about one student onto the screen\n --- S --- to select the current student in the list for grade calculation\n --- A --- to add the points for the current student\n --- C --- to calculate and display the average of the current student\n --- N --- to add a new student to the list\n --- Q --- to quit\n Input: ");
-    scanf("%c", &userInput);
+    printf("\nPlease select from the following:\n --- P --- to print the list of students and information onto the screen\n --- S --- to select the current student in the list for grade calculation\n --- O --- to print the information about one student onto the screen\n --- A --- to add the points for the current student\n --- C --- to calculate and display the average of the current student\n --- N --- to add a new student to the list\n --- Q --- to quit\n Input: ");
+    scanf(" %c", &userInput);
     return userInput;
 };
 
