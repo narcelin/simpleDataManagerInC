@@ -99,7 +99,7 @@ int main(){
             break;
 
             case 'C': //calculate and display the avg of selected student
-                printf("PRINT");
+                CalculateAverage(list, selectedStudentsIndex);
             break;
 
             case 'N': //add student to list
@@ -210,7 +210,7 @@ int AddOneStudent(student list[], int studentCount){
     printf("Input new students total grade points: ");
     scanf(" %lf", &list[newStudentIndex].totalGradePoints);
 
-    list[newStudentIndex].avgGrade = list[newStudentIndex].totalGradePoints / (list[newStudentIndex].numOfGradeEntries * 100);
+    CalculateAverage(list, newStudentIndex);
 
     return newStudentIndex;
 };
@@ -231,8 +231,9 @@ void AddPoints(student list[], int index){
         }
         list[index].totalGradePoints += addedPoints;
         list[index].numOfGradeEntries += 1;
-        list[index].avgGrade = list[index].totalGradePoints / (list[index].numOfGradeEntries * 100);
-        printf("%lf", list[index].totalGradePoints);
+        CalculateAverage(list, index);
 };
 
-void CalculateAverage(student list[], int index){};
+void CalculateAverage(student list[], int index){
+    list[index].avgGrade = list[index].totalGradePoints / (list[index].numOfGradeEntries * 100);
+};
