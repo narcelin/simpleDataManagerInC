@@ -66,7 +66,6 @@ void CalculateAverage(student list[], int index);
 int main(){
     student list[SIZE];
     int selectedStudentsIndex = -1;
-    int addedPoints = 0;
     char userMenuSelection;
     FiveStudents(list); //Hard coding the first 5 students into the array
     Greeting();
@@ -99,7 +98,12 @@ int main(){
             break;
 
             case 'C': //calculate and display the avg of selected student
-                CalculateAverage(list, selectedStudentsIndex);
+                if(selectedStudentsIndex == -1){
+                    printf("\nPlease select a student by using option 'S' in the menu");
+                break;
+                } else {
+                    CalculateAverage(list, selectedStudentsIndex);
+                }
             break;
 
             case 'N': //add student to list
